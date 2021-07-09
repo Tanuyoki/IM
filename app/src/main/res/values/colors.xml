@@ -7,4 +7,54 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorBlack">#000</color>
+    <color name="colorBlue">#0080eb</color>
+    <color name="permissionBgColorBlue">#ee447aa4</color>
+    <color name="permissionBgColorGreenLight">#44a49c</color>
+    <color name="permissionColorGreen">#41c236</color>
+    <color name="permissionColorWhite">#ffffff</color>
+
+    <color name="bg">#f5f8f8</color>
+    <color name="bg_black_tran_22">#22000000</color>
+    <color name="bg_black_tran_55">#55000000</color>
+    <color name="bg_black_tran_77">#77000000</color>
+    <color name="bg_blue">#0080eb</color>
+    <color name="bg_bubble">#f57452</color>
+    <color name="bg_drawer_black">#686868</color>
+    <color name="bg_gray">#bfbfbf</color>
+    <color name="bg_gray_e2">#e2e2e2</color>
+    <color name="bg_gray_f9">#f9f9f9</color>
+    <color name="bg_indicator_point_normal">#d8d8d8</color>
+    <color name="bg_indicator_point_selected">#a6a6a6</color>
+    <color name="bg_keyboard">#f0f3f6</color>
+    <color name="bg_line_black">#000</color>
+    <color name="bg_line_blue">#0082ea</color>
+    <color name="bg_line_gray_deep">#686868</color>
+    <color name="bg_line_white_deep">#dddddd</color>
+    <color name="bg_line_white_shallow">#ececec</color>
+    <color name="bg_title_bar_blue">#0080eb</color>
+    <color name="bg_title_bar_white">#ffffff</color>
+    <color name="bg_white">#ffffff</color>
+    <color name="bg_white_tran_33">#33ffffff</color>
+
+    <color name="btn_blue">#0082ea</color>
+    <color name="btn_gray">#c5c5c5</color>
+    <color name="btn_red">#de3e3d</color>
+
+    <color name="tran">#0000</color>
+    <color name="txt_black">#353535</color>
+    <color name="txt_blue">#007df4</color>
+    <color name="txt_blue_shallow">#00aaff</color>
+    <color name="txt_gray">#bfbfbf</color>
+    <color name="txt_gray_64">#646464</color>
+    <color name="txt_gray_68">#686868</color>
+    <color name="txt_gray_69">#696969</color>
+    <color name="txt_gray_ae">#aeaeae</color>
+    <color name="txt_gray_b9">#b9b9b9</color>
+    <color name="txt_gray_e5">#e5e5e5</color>
+    <color name="txt_green">#049422</color>
+    <color name="txt_orange">#f75e37</color>
+    <color name="txt_red">#ce0f1e</color>
+    <color name="txt_white">#ffffff</color>
 </resources>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yoki.im.tools.im.iminput.ImInputView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_white">
+
+    <View
+        android:id="@+id/im_input_line"
+        style="@style/Line_Horizontal_Gray1px"
+        android:layout_alignParentTop="true" />
+
+    <RelativeLayout
+        android:id="@+id/im_input_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/im_input_line"
+        android:padding="@dimen/margin_medium">
+
+        <TextView
+            android:id="@+id/im_input_order_pager_tip"
+            style="@style/Text_GrayDeep26"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:text="订单" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/im_input_order_pager"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_toEndOf="@+id/im_input_order_pager_tip"
+            android:layout_toRightOf="@+id/im_input_order_pager_tip"
+            android:overScrollMode="never" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/im_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/im_input_order"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingRight="@dimen/padding_medium">
+
+        <ImageView
+            android:id="@+id/im_input_iv_voice"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_chat_voice" />
+
+        <ImageView
+            android:id="@+id/im_input_iv_mode"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:background="@mipmap/im_mode" />
+
+        <TextView
+            android:id="@+id/im_input_tv_send"
+            style="@style/Text_White24"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:background="@drawable/txt_bg_solid_blue_radius3_5"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_medium"
+            android:paddingBottom="@dimen/padding_small"
+            android:text="发送"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/im_input_iv_expression"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/im_input_iv_mode"
+            android:layout_toLeftOf="@+id/im_input_iv_mode"
+            android:background="@drawable/selector_chat_emoji" />
+
+        <com.yoki.im.ui.EditTextImInput
+            android:id="@+id/im_input_edt_input"
+            style="@style/Text_Black28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_toStartOf="@+id/im_input_iv_expression"
+            android:layout_toLeftOf="@+id/im_input_iv_expression"
+            android:layout_toEndOf="@+id/im_input_iv_voice"
+            android:layout_toRightOf="@+id/im_input_iv_voice"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="请输入你要咨询的问题"
+            android:maxLines="2"
+            android:paddingLeft="@dimen/padding_medium"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_medium"
+            android:paddingBottom="@dimen/padding_small"
+            android:textColorHint="#bbbbbb" />
+
+        <View
+            android:id="@+id/im_input_edt_line"
+            style="@style/Line_Horizontal_Gray1px"
+            android:layout_below="@+id/im_input_edt_input"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_toStartOf="@+id/im_input_iv_expression"
+            android:layout_toLeftOf="@+id/im_input_iv_expression"
+            android:layout_toEndOf="@+id/im_input_iv_voice"
+            android:layout_toRightOf="@+id/im_input_iv_voice"
+            android:background="#bbbbbb" />
+
+        <com.yoki.im.ui.TextViewVoice
+            android:id="@+id/im_input_tv_voice"
+            style="@style/Text_Black28"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_toStartOf="@+id/im_input_iv_expression"
+            android:layout_toLeftOf="@+id/im_input_iv_expression"
+            android:layout_toEndOf="@+id/im_input_iv_voice"
+            android:layout_toRightOf="@+id/im_input_iv_voice"
+            android:background="@drawable/txt_im_voice_bg"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small"
+            android:text="按住说话"
+            android:textColor="#989898"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+    
+</com.yoki.im.tools.im.iminput.ImInputView>

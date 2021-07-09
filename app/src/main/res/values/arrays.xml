@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="custom_weekdays">
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </array>
+    <array name="menu_text">
+        <item>复制</item>
+    </array>
+    <string-array name="messages_array">
+
+<!--        <item>How are you</item>-->
+<!--        <item>Fine. And you?</item>-->
+<!--        <item>Me, too. Is there any news today?</item>-->
+<!--        <item>Yep! I got a news here: boom! Tomorrow is the end of The Walking Dead!</item>-->
+<!--        <item>Are you kidding me?</item>-->
+<!--        <item>Absolutely not!</item>-->
+<!--        <item>Jesus, that&apos;s crazy</item>-->
+<!--        <item>I thought no one would gonna to make it</item>-->
+<!--        <item>That&apos;s cruel, I don&apos;t like it, maybe there is a favourable turn</item>-->
+<!--        <item>Hope so</item>-->
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
+
+    <array name="permissionNames">
+        <item>@string/permission_storage</item>
+        <item>@string/permission_location</item>
+        <item>@string/permission_camera</item>
+    </array>
+</resources>

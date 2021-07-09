@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/im_mode_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3f3f3"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/im_mode_container_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/im_mode_iv_picture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/im_picture" />
+
+        <TextView
+            style="@style/All_Base_Text"
+            android:layout_below="@+id/im_mode_iv_picture"
+            android:layout_centerHorizontal="true"
+            android:text="相册"
+            android:textColor="@color/txt_gray_64"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/im_mode_container_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/im_mode_iv_camera"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/im_camera" />
+
+        <TextView
+            style="@style/All_Base_Text"
+            android:layout_below="@+id/im_mode_iv_camera"
+            android:layout_centerHorizontal="true"
+            android:text="相机"
+            android:textColor="@color/txt_gray_64"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/im_mode_container_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/im_mode_iv_order"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/im_order" />
+
+        <TextView
+            style="@style/All_Base_Text"
+            android:layout_below="@+id/im_mode_iv_order"
+            android:layout_centerHorizontal="true"
+            android:text="订单"
+            android:textColor="@color/txt_gray_64"
+            android:layout_marginTop="10dp"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

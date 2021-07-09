@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_medium">
+
+    <TextView
+        android:id="@+id/layout_chat_voice_msg_tv_data"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/Im_MessageList_Date" />
+
+    <cn.jiguang.imui.view.RoundImageView
+        android:id="@+id/layout_chat_voice_msg_round"
+        style="@style/Im_MessageList_Avatar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_chat_voice_msg_tv_data" />
+
+    <LinearLayout
+        android:id="@+id/layout_chat_voice_msg_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_chat_voice_msg_round"
+        app:layout_constraintLeft_toRightOf="@+id/layout_chat_voice_msg_round"
+        app:layout_constraintTop_toTopOf="@+id/layout_chat_voice_msg_round">
+
+        <TextView 
+            android:id="@+id/layout_chat_voice_msg_tv_text"
+            style="@style/Text_Black26" />
+
+        <ImageView
+            android:id="@+id/layout_chat_voice_msg_voice_anim"
+            style="@style/Im_MessageList_Voice"
+            android:layout_marginRight="@dimen/margin_medium" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Line_Horizontal_Gray1px">
+        <item name="android:background">@color/bg_line_white_deep</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+
+    <style name="Base_Dialog">
+        <item name="android:backgroundDimAmount">0.2</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowMinWidthMinor">576dp</item>
+    </style>
+    <style name="Permission">
+        <item name="PermissionButtonBackground">@drawable/shape_btn_blue</item>
+        <item name="PermissionButtonTextColor">#fff</item>
+        <item name="PermissionItemTextColor">#757575</item>
+        <item name="PermissionMsgColor">#757575</item>
+        <item name="PermissionTitleColor">#757575</item>
+    </style>
+    <style name="PermissionDefaultNormalStyle">
+        <item name="PermissionBackround">@drawable/shape_bg_white</item>
+        <item name="PermissionButtonBackground">@drawable/shape_btn_next</item>
+        <item name="PermissionButtonTextColor">@android:color/white</item>
+        <item name="PermissionItemTextColor">#737373</item>
+        <item name="PermissionMsgColor">#737373</item>
+        <item name="PermissionTitleColor">#737373</item>
+    </style>
+
+    <style name="All_Base_TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="centerTextSize">32sp</item>
+        <item name="leftContainerPaddingBottom">@dimen/margin_medium</item>
+        <item name="leftContainerPaddingLeft">@dimen/margin_large</item>
+        <item name="leftContainerPaddingRight">@dimen/margin_large</item>
+        <item name="leftContainerPaddingTop">@dimen/margin_medium</item>
+        <item name="leftOnClick">1</item>
+        <item name="rightContainerPadding">@dimen/margin_medium</item>
+        <item name="rightTextSize">28sp</item>
+    </style>
+    <style name="All_TitleBar_Default" parent="@style/All_Base_TitleBar">
+        <item name="centerTextColor">@color/txt_white</item>
+        <item name="leftDrawable">@mipmap/all_arrow_white_left_small</item>
+        <item name="leftDrawableHeight">30dp</item>
+        <item name="leftDrawableWidth">20dp</item>
+        <item name="rightTextColor">@color/txt_white</item>
+        <item name="statusBarColor">@color/bg_blue</item>
+        <item name="titleBarColor">@color/bg_blue</item>
+    </style>
+    <style name="All_TitleBar_White" parent="@style/All_Base_TitleBar">
+        <item name="centerTextColor">@color/txt_black</item>
+        <item name="leftDrawable">@mipmap/all_arrow_black_left_small</item>
+        <item name="leftDrawableHeight">30dp</item>
+        <item name="leftDrawableWidth">20dp</item>
+        <item name="rightTextColor">@color/txt_black</item>
+        <item name="statusBarColor">@color/colorBlack</item>
+        <item name="titleBarColor">@color/bg_white</item>
+    </style>
+
+    <style name="All_Base_Text">
+        <item name="android:gravity">left|center_horizontal|clip_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="Text_GrayDeep26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/txt_gray_68</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_White24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/txt_white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_White28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/txt_white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_Black24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_Black26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_Black28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/txt_black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_Red22">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/txt_red</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Text_Red24" parent="@style/Text_Red22">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/txt_red</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="Im_Image_Resend">
+        <item name="android:background">@drawable/aurora_send_msg_error</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="Im_MessageList_Avatar">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_marginLeft">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
+        <item name="android:layout_marginRight">@dimen/margin_medium</item>
+        <item name="avatarRadius">5dp</item>
+    </style>
+    <style name="Im_MessageList_Date" parent="@style/Text_White24">
+        <item name="android:background">@drawable/all_bg_solid_gray_radius5</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">@dimen/padding_small</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
+        <item name="android:layout_marginBottom">@dimen/margin_medium</item>
+        <item name="layout_constraintLeft_toLeftOf">@null</item>
+        <item name="layout_constraintRight_toRightOf">@null</item>
+        <item name="layout_constraintTop_toTopOf">@null</item>
+    </style>
+    <style name="Im_MessageList_Resend">
+        <item name="android:background">@drawable/aurora_send_msg_error</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+    <style name="Im_MessageList_Text" parent="@style/Text_Black26">
+        <item name="android:textSize">28sp</item>
+        <item name="android:gravity">right|center_horizontal|clip_horizontal</item>
+        <item name="android:paddingLeft">@dimen/padding_large</item>
+        <item name="android:paddingRight">@dimen/padding_large</item>
+        <item name="android:layout_marginLeft">@dimen/margin_medium</item>
+        <item name="android:layout_marginRight">@dimen/margin_medium</item>
+    </style>
+    <style name="Im_MessageList_Voice">
+        <item name="android:layout_gravity">clip_horizontal</item>
+        <item name="android:background">@drawable/aurora_anim_send_voice</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="Image_Close">
+        <item name="android:background">@mipmap/all_close</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="Image_Delete">
+        <item name="android:background">@mipmap/all_delete_balck_small</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="Image_Filter">
+        <item name="android:background">@mipmap/all_filter_nor</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="Image_Question_Mark">
+        <item name="android:background">@mipmap/all_question_mark</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+    <style name="Image_Upload">
+        <item name="android:background">@mipmap/all_upload_bg</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">190dp</item>
+    </style>
+</resources>

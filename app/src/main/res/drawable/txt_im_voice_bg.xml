@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list>
+    <item>
+        <shape>
+            <solid xmlns:ns1="http://schemas.android.com/apk/res/android" ns1:color="#bbbbbb"/>
+        </shape>
+    </item>
+    <item xmlns:ns2="http://schemas.android.com/apk/res/android" ns2:left="2px" xmlns:ns3="http://schemas.android.com/apk/res/android" ns3:top="2px" xmlns:ns4="http://schemas.android.com/apk/res/android" ns4:right="2px" xmlns:ns5="http://schemas.android.com/apk/res/android" ns5:bottom="2px">
+        <shape>
+            <solid xmlns:ns6="http://schemas.android.com/apk/res/android" ns6:color="@color/bg_white"/>
+        </shape>
+    </item>
+</layer-list>

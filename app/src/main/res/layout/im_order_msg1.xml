@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_chat_order_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/padding_medium">
+
+    <cn.jiguang.imui.view.RoundImageView 
+        android:id="@+id/layout_chat_order_msg_round"
+        style="@style/Im_MessageList_Avatar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_chat_order_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:background="@drawable/im_send_white_bubble"
+        android:paddingLeft="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingRight="@dimen/padding_medium"
+        android:paddingBottom="@dimen/padding_medium"
+        app:layout_constraintRight_toLeftOf="@+id/layout_chat_order_msg_round"
+        app:layout_constraintTop_toTopOf="@+id/layout_chat_order_msg_round">
+
+        <ImageView
+            android:id="@+id/layout_chat_order_msg_iv"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@mipmap/im_order_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/layout_chat_order_msg_tv_number"
+            style="@style/Text_Black26"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:text="Num"
+            app:layout_constraintLeft_toRightOf="@+id/layout_chat_order_msg_iv"
+            app:layout_constraintTop_toTopOf="@+id/layout_chat_order_msg_iv" />
+
+        <TextView
+            android:id="@+id/layout_chat_order_msg_tv_counts"
+            style="@style/Text_Black26"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:text="Counts"
+            app:layout_constraintLeft_toRightOf="@+id/layout_chat_order_msg_tv_number"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/layout_chat_order_msg_tv_number" />
+
+        <TextView
+            android:id="@+id/layout_chat_order_msg_tv_name"
+            style="@style/Text_Black26"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toLeftOf="@+id/layout_chat_order_msg_tv_number"
+            app:layout_constraintTop_toBottomOf="@+id/layout_chat_order_msg_tv_number" />
+
+        <TextView
+            android:id="@+id/layout_chat_order_msg_tv_money"
+            style="@style/Text_Red24"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@+id/layout_chat_order_msg_tv_number"
+            app:layout_constraintTop_toBottomOf="@+id/layout_chat_order_msg_tv_name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

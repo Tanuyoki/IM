@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="PermissionBackround" format="reference" />
+    <attr name="PermissionBgFilterColor" format="color" />
+    <attr name="PermissionButtonBackground" format="reference" />
+    <attr name="PermissionButtonTextColor" format="color" />
+    <attr name="PermissionIconFilterColor" format="color" />
+    <attr name="PermissionItemTextColor" format="color" />
+    <attr name="PermissionMsgColor" format="color" />
+    <attr name="PermissionTitleColor" format="color" />
+
+    <declare-styleable name="TitleBar">
+        <attr name="leftContainerPadding" format="dimension"/>
+        <attr name="leftContainerPaddingBottom" format="dimension"/>
+        <attr name="leftContainerPaddingLeft" format="dimension"/>
+        <attr name="leftContainerPaddingRight" format="dimension"/>
+        <attr name="leftContainerPaddingTop" format="dimension"/>
+        <attr name="leftDrawable" format="reference|color"/>
+        <attr name="leftDrawableGravity">
+            <enum name="bottom" value="3" />
+            <enum name="left" value="0" />
+            <enum name="right" value="2" />
+            <enum name="top" value="1" />
+        </attr>
+        <attr name="leftDrawableHeight" format="reference|dimension"/>
+        <attr name="leftDrawablePadding" format="dimension"/>
+        <attr name="leftDrawableWidth" format="reference|dimension"/>
+        <attr name="leftOnClick">
+            <enum name="finish" value="1" />
+            <enum name="nothing" value="0" />
+        </attr>
+        <attr name="leftOrientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="leftText" format="string"/>
+        <attr name="leftTextColor" format="color"/>
+        <attr name="leftTextSize" format="dimension"/>
+        <attr name="centerDrawable" format="reference" />
+        <attr name="centerDrawableGravity">
+            <enum name="bottom" value="3" />
+            <enum name="left" value="0" />
+            <enum name="right" value="2" />
+            <enum name="top" value="1" />
+        </attr>
+        <attr name="centerDrawableHeight" format="dimension" />
+        <attr name="centerDrawablePadding" format="dimension" />
+        <attr name="centerDrawableWidth" format="dimension" />
+        <attr name="centerLayoutId" format="reference" />
+        <attr name="centerOrientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="centerText" format="string" />
+        <attr name="centerTextColor" format="color" />
+        <attr name="centerTextSize" format="dimension" />
+        <attr name="rightContainerPadding" format="dimension"/>
+        <attr name="rightContainerPaddingBottom" format="dimension"/>
+        <attr name="rightContainerPaddingLeft" format="dimension"/>
+        <attr name="rightContainerPaddingRight" format="dimension"/>
+        <attr name="rightContainerPaddingTop" format="dimension"/>
+        <attr name="rightDrawable" format="reference|color"/>
+        <attr name="rightDrawableGravity">
+            <enum name="bottom" value="3" />
+            <enum name="left" value="0" />
+            <enum name="right" value="2" />
+            <enum name="top" value="1" />
+        </attr>
+        <attr name="rightDrawableHeight" format="reference|dimension"/>
+        <attr name="rightDrawablePadding" format="dimension"/>
+        <attr name="rightDrawableWidth" format="reference|dimension"/>
+        <attr name="rightOrientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="rightText" format="string"/>
+        <attr name="rightTextColor" format="color"/>
+        <attr name="rightTextSize" format="dimension"/>
+        <attr name="statusBarBackground" format="reference"/>
+        <attr name="statusBarColor" format="color"/>
+        <attr name="titleBarColor" format="color"/>
+    </declare-styleable>
+
+</resources>
