@@ -8,8 +8,9 @@
 
     <com.yoki.im.ui.TitleBar
         android:id="@+id/im_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/All_TitleBar_Default"
         app:layout_constraintBottom_toTopOf="@+id/im_refresh"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

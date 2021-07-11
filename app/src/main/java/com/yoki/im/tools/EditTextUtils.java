@@ -25,7 +25,7 @@ public class EditTextUtils {
 
     public static void showSoftKeyboard(Activity activity, EditText editText) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService("input_method");
-        editText.setVisibility(0);
+        editText.setVisibility(View.VISIBLE);
         if (imm != null) {
             editText.requestFocus();
             editText.setSelection(editText.getText().length());

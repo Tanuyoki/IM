@@ -75,30 +75,30 @@ public class TitleBar extends ConstraintLayout {
         int centerDrawableResId = typed.getResourceId(R.styleable.TitleBar_centerDrawable, 0);
         int centerDrawableWidth = typed.getDimensionPixelSize(R.styleable.TitleBar_centerDrawableWidth, -1);
         int centerDrawableHeight = typed.getDimensionPixelSize(R.styleable.TitleBar_centerDrawableHeight, -1);
-        int centerDrawablePadding = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, 0);
-        int centerDrawableGravity = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        int centerOrientation = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        String leftText = typed.getString(R.styleable.TitleBar_statusBarColor);
-        int[] leftContainerPadding = {typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, 0), typed.getDimensionPixelSize(12, 0), typed.getDimensionPixelSize(14, 0), typed.getDimensionPixelSize(13, 0), typed.getDimensionPixelSize(11, 0)};
-        int leftTextSize = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, defaultTextSize);
-        int leftTextColor = typed.getColor(R.styleable.TitleBar_statusBarColor, defaultTextColor);
-        int leftDrawableResId = typed.getResourceId(R.styleable.TitleBar_statusBarColor, 0);
-        int leftDrawableWidth = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, -1);
-        int leftDrawableHeight = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, -1);
-        int leftDrawablePadding = typed.getDimensionPixelOffset(R.styleable.TitleBar_statusBarColor, 0);
-        int leftDrawableGravity = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        int leftOrientation = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        final int leftOnClick = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        String rightText = typed.getString(R.styleable.TitleBar_statusBarColor);
-        int[] rightContainerPadding = {typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, 0), typed.getDimensionPixelSize(27, 0), typed.getDimensionPixelSize(14, 0), typed.getDimensionPixelSize(13, 0), typed.getDimensionPixelSize(11, 0)};
-        int rightTextSize = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, defaultTextSize);
-        int rightTextColor = typed.getColor(R.styleable.TitleBar_statusBarColor, defaultTextColor);
-        int rightDrawableResId = typed.getResourceId(R.styleable.TitleBar_statusBarColor, 0);
-        int rightDrawableWidth = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, -1);
-        int rightDrawableHeight = typed.getDimensionPixelSize(R.styleable.TitleBar_statusBarColor, -1);
-        int rightDrawablePadding = typed.getDimensionPixelOffset(R.styleable.TitleBar_statusBarColor, 0);
-        int rightDrawableGravity = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
-        int rightOrientation = typed.getInt(R.styleable.TitleBar_statusBarColor, 0);
+        int centerDrawablePadding = typed.getDimensionPixelSize(R.styleable.TitleBar_centerDrawablePadding, 0);
+        int centerDrawableGravity = typed.getInt(R.styleable.TitleBar_centerDrawableGravity, 0);
+        int centerOrientation = typed.getInt(R.styleable.TitleBar_centerOrientation, 0);
+        String leftText = typed.getString(R.styleable.TitleBar_leftText);
+        int[] leftContainerPadding = {typed.getDimensionPixelSize(R.styleable.TitleBar_leftContainerPadding, 0), typed.getDimensionPixelSize(12, 0), typed.getDimensionPixelSize(14, 0), typed.getDimensionPixelSize(13, 0), typed.getDimensionPixelSize(11, 0)};
+        int leftTextSize = typed.getDimensionPixelSize(R.styleable.TitleBar_leftTextSize, defaultTextSize);
+        int leftTextColor = typed.getColor(R.styleable.TitleBar_leftTextColor, defaultTextColor);
+        int leftDrawableResId = typed.getResourceId(R.styleable.TitleBar_leftDrawable, 0);
+        int leftDrawableWidth = typed.getDimensionPixelSize(R.styleable.TitleBar_leftDrawableWidth, -1);
+        int leftDrawableHeight = typed.getDimensionPixelSize(R.styleable.TitleBar_leftDrawableHeight, -1);
+        int leftDrawablePadding = typed.getDimensionPixelOffset(R.styleable.TitleBar_leftDrawablePadding, 0);
+        int leftDrawableGravity = typed.getInt(R.styleable.TitleBar_leftDrawableGravity, 0);
+        int leftOrientation = typed.getInt(R.styleable.TitleBar_leftOrientation, 0);
+        final int leftOnClick = typed.getInt(R.styleable.TitleBar_leftOnClick, 0);
+        String rightText = typed.getString(R.styleable.TitleBar_rightText);
+        int[] rightContainerPadding = {typed.getDimensionPixelSize(R.styleable.TitleBar_rightContainerPadding, 0), typed.getDimensionPixelSize(27, 0), typed.getDimensionPixelSize(14, 0), typed.getDimensionPixelSize(13, 0), typed.getDimensionPixelSize(11, 0)};
+        int rightTextSize = typed.getDimensionPixelSize(R.styleable.TitleBar_rightTextSize, defaultTextSize);
+        int rightTextColor = typed.getColor(R.styleable.TitleBar_rightTextColor, defaultTextColor);
+        int rightDrawableResId = typed.getResourceId(R.styleable.TitleBar_rightDrawable, 0);
+        int rightDrawableWidth = typed.getDimensionPixelSize(R.styleable.TitleBar_rightDrawableWidth, -1);
+        int rightDrawableHeight = typed.getDimensionPixelSize(R.styleable.TitleBar_rightDrawableHeight, -1);
+        int rightDrawablePadding = typed.getDimensionPixelOffset(R.styleable.TitleBar_rightDrawablePadding, 0);
+        int rightDrawableGravity = typed.getInt(R.styleable.TitleBar_rightDrawableGravity, 0);
+        int rightOrientation = typed.getInt(R.styleable.TitleBar_rightOrientation, 0);
         typed.recycle();
         initStatusBar(statusBarColorId);
         this.tvLeft = generateTextView(leftText, (float) leftTextSize, leftTextColor);
@@ -121,7 +121,8 @@ public class TitleBar extends ConstraintLayout {
         this.ivRight = generateImageView(rightDrawableResId, rightDrawablePadding);
         this.containerRight = generateContainerLayout(rightContainerPadding, 2, rightOrientation, rightDrawableGravity, this.tvRight, this.ivRight, generateImageViewLayoutParams(this.ivRight.getBackground(), rightDrawableWidth, rightDrawableHeight));
         addView(this.containerRight);
-        setBackgroundColor(ContextCompat.getColor(this.context, titleBarColorId));
+        if (titleBarColorId != 0)
+            setBackgroundColor(ContextCompat.getColor(this.context, titleBarColorId));
         this.containerLeft.setOnClickListener(new View.OnClickListener() {
             /* class com.yoki.im.ui.TitleBar.AnonymousClass1 */
 

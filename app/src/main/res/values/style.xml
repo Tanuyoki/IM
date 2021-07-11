@@ -43,7 +43,7 @@
         <item name="leftContainerPaddingLeft">@dimen/margin_large</item>
         <item name="leftContainerPaddingRight">@dimen/margin_large</item>
         <item name="leftContainerPaddingTop">@dimen/margin_medium</item>
-        <item name="leftOnClick">1</item>
+        <item name="leftOnClick">finish</item>
         <item name="rightContainerPadding">@dimen/margin_medium</item>
         <item name="rightTextSize">28sp</item>
     </style>

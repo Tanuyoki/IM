@@ -78,9 +78,9 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
                     if (ImInputView.this.mListener != null) {
                         List<String> list = new ArrayList<>();
                         list.add(String.valueOf(((TextView) v).getText()));
-                        list.add("254宗违章");
-                        list.add("钧瀚科技有限公司");
-                        list.add("￥45894");
+                        list.add("256");
+                        list.add("Test");
+                        list.add("$100");
                         ImInputView.this.mListener.onClickOrder(list);
                     }
                 }
@@ -172,7 +172,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
     public void init(AppCompatActivity activity) {
         this.mActivity = activity;
         this.mFragmentManager = activity.getSupportFragmentManager();
-//        this.mInputManager = (InputMethodManager) this.mActivity.getSystemService("input_method");
+        this.mInputManager = (InputMethodManager) this.mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
         this.mOrderPager = (ViewPager) activity.findViewById(R.id.im_input_order_pager);
         this.mMenuVoice = activity.findViewById(R.id.im_input_iv_voice);
         this.mMenuExpression = activity.findViewById(R.id.im_input_iv_expression);
@@ -314,7 +314,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
                 }
                 this.mMenuExpression.setSelected(false);
                 this.mMenuVoice.setSelected(false);
-//                this.mVoice.setVisibility(4);
+                this.mVoice.setVisibility(View.INVISIBLE);
                 return;
             case R.id.im_input_iv_voice /*{ENCODED_INT: 2131296859}*/:
                 switchState(true);
@@ -349,11 +349,11 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         if (isClickVoice) {
             setExpressionLayoutParams(this.mMenuVoice.isSelected());
             if (this.mMenuVoice.isSelected()) {
-//                this.mVoice.setVisibility(4);
+                this.mVoice.setVisibility(View.INVISIBLE);
                 showKeyboard();
             } else {
                 this.mMenuVoice.setSelected(true);
-//                this.mVoice.setVisibility(0);
+                this.mVoice.setVisibility(View.VISIBLE);
                 hideKeyboard();
             }
             this.mMenuExpression.setSelected(false);
@@ -372,7 +372,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
             hideKeyboard();
         }
         this.mMenuVoice.setSelected(false);
-//        this.mVoice.setVisibility(4);
+        this.mVoice.setVisibility(View.INVISIBLE);
         if (this.mModeFragment != null) {
             this.mFragmentTransaction.hide(this.mModeFragment);
         }
@@ -403,7 +403,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
 
     private void hideKeyboard() {
         if (this.mIsKeyboardShowing) {
-//            EditTextUtils.hideSoftKeyboard(this.mEditView);
+            EditTextUtils.hideSoftKeyboard(mActivity, this.mEditView);
         }
     }
 
@@ -437,12 +437,12 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
     private void setExpressionLayoutParams(boolean isShowSendView) {
         int leftOf;
         if (isShowSendView) {
-//            this.mMenuMode.setVisibility(4);
-//            this.mSend.setVisibility(0);
+            this.mMenuMode.setVisibility(View.INVISIBLE);
+            this.mSend.setVisibility(View.VISIBLE);
             leftOf = R.id.im_input_tv_send;
         } else {
-//            this.mMenuMode.setVisibility(0);
-//            this.mSend.setVisibility(8);
+            this.mMenuMode.setVisibility(View.VISIBLE);
+            this.mSend.setVisibility(View.GONE);
             leftOf = R.id.im_input_iv_mode;
         }
         LayoutParams lp = new LayoutParams(this.mMenuExpression.getWidth(), this.mMenuExpression.getHeight());

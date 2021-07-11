@@ -53,8 +53,8 @@ public class ImAty extends BaseActivity {
     private static final int CUSTOM_VIEW_TYPE = 13;
     private static final String RECEIVE_ICON = "R.mipmap.msg_customer_service";
     private static final String RECEIVE_NAME = "";
-//    private static final String SEND_ICON = ("http://192.168.1.10/files/" + CommonData.UserInfo.avatar);
-    private static final String SEND_ICON = "R.mipmap.msg_customer_service";
+    private static final String SEND_ICON = ("http://192.168.1.10/files/" + CommonData.UserInfo.avatar);
+//    private static final String SEND_ICON = "R.mipmap.msg_customer_service";
     private static final String SEND_NAME = "";
     private final ImageLoader imageLoader = new ImageLoader() {
         /* class com.acarbang.android.activities.message.ImAty.AnonymousClass1 */

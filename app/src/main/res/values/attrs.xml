@@ -76,7 +76,7 @@
         <attr name="rightText" format="string"/>
         <attr name="rightTextColor" format="color"/>
         <attr name="rightTextSize" format="dimension"/>
-        <attr name="statusBarBackground" format="reference"/>
+<!--        <attr name="statusBarBackground" format="reference"/>-->
         <attr name="statusBarColor" format="color"/>
         <attr name="titleBarColor" format="color"/>
     </declare-styleable>
