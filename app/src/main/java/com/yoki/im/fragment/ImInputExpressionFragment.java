@@ -39,8 +39,8 @@ public class ImInputExpressionFragment extends BaseFragment {
 
     /* access modifiers changed from: protected */
     public void initView(View rootView) {
-        this.viewPagerEmotion = (ViewPager) rootView.findViewById(R.id.emotion_view_pager);
-        this.viewPointGroup = (EmojiIndicatorView) rootView.findViewById(R.id.emotion_point_group);
+        this.viewPagerEmotion = rootView.findViewById(R.id.emotion_view_pager);
+        this.viewPointGroup = rootView.findViewById(R.id.emotion_point_group);
         this.emotionMapType = 1;
     }
 

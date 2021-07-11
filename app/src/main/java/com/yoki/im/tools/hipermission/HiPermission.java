@@ -119,28 +119,30 @@ public class HiPermission {
     }
 
     public void checkSinglePermission(String permission, PermissionCallback callback) {
-        if (Build.VERSION.SDK_INT >= 23 && !checkPermission(this.mContext, permission)) {
-            this.mCallback = callback;
-            this.mPermissionType = PermissionActivity.PERMISSION_TYPE_SINGLE;
-            this.mCheckPermissions = new ArrayList();
-            this.mCheckPermissions.add(new PermissionItem(permission));
-            startActivity();
-        } else if (callback != null) {
-            callback.onGuarantee(permission, 0);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkPermission(mContext, permission)) {
+            if (callback != null)
+                callback.onGuarantee(permission, 0);
+            return;
         }
+        mCallback = callback;
+        mPermissionType = PermissionActivity.PERMISSION_TYPE_SINGLE;
+        mCheckPermissions = new ArrayList<>();
+        mCheckPermissions.add(new PermissionItem(permission));
+        startActivity();
     }
 
     private void startActivity() {
-        PermissionActivity.setCallBack(this.mCallback);
-        Intent intent = new Intent(this.mContext, PermissionActivity.class);
-        intent.putExtra(ConstantValue.DATA_TITLE, this.mTitle);
-        intent.putExtra(ConstantValue.DATA_PERMISSION_TYPE, this.mPermissionType);
-        intent.putExtra(ConstantValue.DATA_MSG, this.mMsg);
-        intent.putExtra(ConstantValue.DATA_FILTER_COLOR, this.mFilterColor);
-        intent.putExtra(ConstantValue.DATA_STYLE_ID, this.mStyleResId);
-        intent.putExtra(ConstantValue.DATA_ANIM_STYLE, this.mAnimStyleId);
-        intent.putExtra(ConstantValue.DATA_PERMISSIONS, (Serializable) this.mCheckPermissions);
-        intent.addFlags(268435456);
-        this.mContext.startActivity(intent);
+        PermissionActivity.setCallBack(mCallback);
+        Intent intent = new Intent(mContext, PermissionActivity.class);
+        intent.putExtra(ConstantValue.DATA_TITLE, mTitle);
+        intent.putExtra(ConstantValue.DATA_PERMISSION_TYPE, mPermissionType);
+        intent.putExtra(ConstantValue.DATA_MSG, mMsg);
+        intent.putExtra(ConstantValue.DATA_FILTER_COLOR, mFilterColor);
+        intent.putExtra(ConstantValue.DATA_STYLE_ID, mStyleResId);
+        intent.putExtra(ConstantValue.DATA_ANIM_STYLE, mAnimStyleId);
+        intent.putExtra(ConstantValue.DATA_PERMISSIONS, (Serializable) mCheckPermissions);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
     }
+
 }

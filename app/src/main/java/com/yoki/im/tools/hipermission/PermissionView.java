@@ -16,12 +16,15 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.yoki.im.R;
+
 public class PermissionView extends FrameLayout {
+
+    private TextView mTvTitle;
+    private TextView mTvDesc;
     private Button mBtnNext;
     private GridView mGvPermission;
     private LinearLayout mLlRoot;
-    private TextView mTvDesc;
-    private TextView mTvTitle;
 
     public PermissionView(Context context) {
         this(context, null);
@@ -37,85 +40,101 @@ public class PermissionView extends FrameLayout {
     }
 
     private void initView() {
-//        View permissionView = View.inflate(getContext(), R.layout.dialog_request_permission, this);
-//        this.mTvTitle = (TextView) permissionView.findViewById(R.id.tvTitle);
-//        this.mLlRoot = (LinearLayout) permissionView.findViewById(R.id.llRoot);
-//        this.mTvDesc = (TextView) permissionView.findViewById(R.id.tvDesc);
-//        this.mBtnNext = (Button) permissionView.findViewById(R.id.goto_settings);
-//        this.mGvPermission = (GridView) permissionView.findViewById(R.id.gvPermission);
+        View permissionView = View.inflate(getContext(), R.layout.dialog_request_permission, this);
+        mTvTitle = (TextView) permissionView.findViewById(R.id.tvTitle);
+        mLlRoot = (LinearLayout) permissionView.findViewById(R.id.llRoot);
+        mTvDesc = (TextView) permissionView.findViewById(R.id.tvDesc);
+        mBtnNext = (Button) permissionView.findViewById(R.id.goto_settings);
+        mGvPermission = (GridView) permissionView.findViewById(R.id.gvPermission);
     }
 
     public void setGridViewColum(int colum) {
-        this.mGvPermission.setNumColumns(colum);
+        mGvPermission.setNumColumns(colum);
     }
 
     public void setGridViewAdapter(ListAdapter adapter) {
-        this.mGvPermission.setAdapter(adapter);
+        mGvPermission.setAdapter(adapter);
     }
 
     public void setTitle(String title) {
-        this.mTvTitle.setText(title);
+        mTvTitle.setText(title);
     }
 
     public void setMsg(String msg) {
-        this.mTvDesc.setText(msg);
+        mTvDesc.setText(msg);
     }
 
     public void setBtnOnClickListener(OnClickListener listener) {
-        this.mBtnNext.setOnClickListener(listener);
+        mBtnNext.setOnClickListener(listener);
     }
 
+    @SuppressWarnings("ResourceType")
     public void setStyleId(int styleId) {
-        if (styleId > 0) {
-//            int[] ints = {R.attr.PermissionMsgColor, R.attr.PermissionTitleColor, R.attr.PermissionItemTextColor, R.attr.PermissionButtonTextColor, R.attr.PermissionBackround, R.attr.PermissionButtonBackground, R.attr.PermissionBgFilterColor, R.attr.PermissionIconFilterColor};
-//            Resources.Theme theme = getResources().newTheme();
-//            theme.applyStyle(styleId, true);
-//            TypedArray typedArray = theme.obtainStyledAttributes(ints);
-//            int msgColor = typedArray.getColor(0, 0);
-//            int titleColor = typedArray.getColor(1, 0);
-//            int itemTextColor = typedArray.getColor(2, 0);
-//            int btnTextColor = typedArray.getColor(3, 0);
-//            Drawable background = typedArray.getDrawable(4);
-//            Drawable Btnbackground = typedArray.getDrawable(5);
-//            int bgFilterColor = typedArray.getColor(6, 0);
-//            int iconFilterColor = typedArray.getColor(7, 0);
-//            if (titleColor != 0) {
-//                this.mTvTitle.setTextColor(titleColor);
-//            }
-//            if (background != null) {
-//                if (bgFilterColor != 0) {
-//                    background.setColorFilter(getColorFilter(bgFilterColor));
-//                }
-//                this.mLlRoot.setBackgroundDrawable(background);
-//            }
-//            if (msgColor != 0) {
-//                this.mTvDesc.setTextColor(msgColor);
-//            }
-//            if (itemTextColor != 0) {
-//                ((PermissionAdapter) this.mGvPermission.getAdapter()).setTextColor(itemTextColor);
-//            }
-//            if (Btnbackground != null) {
-//                this.mBtnNext.setBackgroundDrawable(Btnbackground);
-//            }
-//            if (btnTextColor != 0) {
-//                this.mBtnNext.setTextColor(btnTextColor);
-//            }
-//            if (iconFilterColor != 0) {
-//                setFilterColor(iconFilterColor);
-//            }
-//            typedArray.recycle();
+        if (styleId <= 0)
+            return;
+        int[] ints = {
+                R.attr.PermissionMsgColor,
+                R.attr.PermissionTitleColor,
+                R.attr.PermissionItemTextColor,
+                R.attr.PermissionButtonTextColor,
+                R.attr.PermissionBackround,
+                R.attr.PermissionButtonBackground,
+                R.attr.PermissionBgFilterColor,
+                R.attr.PermissionIconFilterColor
+        };
+        Resources.Theme theme = getResources().newTheme();
+        theme.applyStyle(styleId, true);
+
+        TypedArray typedArray = theme.obtainStyledAttributes(ints);
+        int msgColor = typedArray.getColor(0, 0);
+        int titleColor = typedArray.getColor(1, 0);
+        int itemTextColor = typedArray.getColor(2, 0);
+        int btnTextColor = typedArray.getColor(3, 0);
+        Drawable background = typedArray.getDrawable(4);
+        Drawable Btnbackground = typedArray.getDrawable(5);
+        int bgFilterColor = typedArray.getColor(6, 0);
+        int iconFilterColor = typedArray.getColor(7, 0);
+
+        if (titleColor != 0)
+            mTvTitle.setTextColor(titleColor);
+        if (background != null) {
+            if (bgFilterColor != 0)
+                background.setColorFilter(getColorFilter(bgFilterColor));
+            mLlRoot.setBackgroundDrawable(background);
         }
+        if (msgColor != 0)
+            mTvDesc.setTextColor(msgColor);
+        if (itemTextColor != 0)
+            ((PermissionAdapter) mGvPermission.getAdapter()).setTextColor(itemTextColor);
+        if (Btnbackground != null)
+            mBtnNext.setBackgroundDrawable(Btnbackground);
+        if (btnTextColor != 0)
+            mBtnNext.setTextColor(btnTextColor);
+        if (iconFilterColor != 0)
+            setFilterColor(iconFilterColor);
+
+        typedArray.recycle();
+
     }
 
     private ColorFilter getColorFilter(int bgFilterColor) {
         int blue = Color.blue(bgFilterColor);
         int green = Color.green(bgFilterColor);
-        return new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, (float) Color.red(bgFilterColor), 0.0f, 1.0f, 0.0f, 0.0f, (float) green, 0.0f, 0.0f, 1.0f, 0.0f, (float) blue, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f});
+        int red = Color.red(bgFilterColor);
+        float[] cm = new float[]{
+                1, 0, 0, 0, red,// 红色值
+                0, 1, 0, 0, green,// 绿色值
+                0, 0, 1, 0, blue,// 蓝色值
+                0, 0, 0, 1, 1 // 透明度
+        };
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(cm);
+        return filter;
     }
 
     public void setFilterColor(int color) {
-        if (color != 0) {
-            ((PermissionAdapter) this.mGvPermission.getAdapter()).setFilterColor(color);
-        }
+        if (color == 0)
+            return;
+
+        ((PermissionAdapter) mGvPermission.getAdapter()).setFilterColor(color);
     }
 }

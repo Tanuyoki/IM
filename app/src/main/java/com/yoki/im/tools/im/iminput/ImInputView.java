@@ -70,7 +70,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         public Object instantiateItem(ViewGroup container, int position) {
             container.addView((View) ImInputView.this.mArrayOrder.get(position));
             this.mText = (TextView) ((View) ImInputView.this.mArrayOrder.get(position)).findViewById(R.id.layout_order_pager_tv_text);
-            this.mText.setText("粤12345" + position);
+            this.mText.setText("R" + position);
             this.mText.setOnClickListener(new OnClickListener() {
                 /* class com.yoki.im.tools.im.iminput.ImInputView.AnonymousClass1.AnonymousClass1 */
 
@@ -197,7 +197,7 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         }
         LayoutInflater lf = activity.getLayoutInflater();
         this.mArrayOrder = new ArrayList<>();
-//        this.mArrayOrder.add(lf.inflate(R.layout.layout_order_pager1, (ViewGroup) null));
+        this.mArrayOrder.add(lf.inflate(R.layout.layout_order_pager1, (ViewGroup) null));
         this.mOrderPager.setPageMargin((int) (((double) CommonData.ScreenWidth) * 0.0277d));
         this.mOrderPager.setAdapter(this.pagerAdapter);
         GlobalOnItemClickManagerUtils.getInstance(getContext()).attachToEditText(this.mEditView);
@@ -319,17 +319,17 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
             case R.id.im_input_iv_voice /*{ENCODED_INT: 2131296859}*/:
                 switchState(true);
                 return;
-            case R.id.im_input_line /*{ENCODED_INT: 2131296860}*/:
-            case R.id.im_input_order /*{ENCODED_INT: 2131296861}*/:
-            case R.id.im_input_order_pager /*{ENCODED_INT: 2131296862}*/:
-            case R.id.im_input_order_pager_tip /*{ENCODED_INT: 2131296863}*/:
-            default:
-                return;
             case R.id.im_input_tv_send /*{ENCODED_INT: 2131296864}*/:
                 if (this.mListener != null) {
                     this.mListener.onClickText(String.valueOf(this.mEditView.getText()));
                 }
                 this.mEditView.setText("");
+                return;
+            case R.id.im_input_line /*{ENCODED_INT: 2131296860}*/:
+            case R.id.im_input_order /*{ENCODED_INT: 2131296861}*/:
+            case R.id.im_input_order_pager /*{ENCODED_INT: 2131296862}*/:
+            case R.id.im_input_order_pager_tip /*{ENCODED_INT: 2131296863}*/:
+            default:
                 return;
         }
     }
@@ -387,8 +387,6 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void onScrollToBottom() {
         if (this.mListener != null) {
             this.mListener.onScrollToBottom();
@@ -407,8 +405,6 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void resetView() {
         this.mMenuVoice.setSelected(false);
         this.mMenuExpression.setSelected(false);
@@ -432,8 +428,6 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         }
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void setExpressionLayoutParams(boolean isShowSendView) {
         int leftOf;
         if (isShowSendView) {
@@ -463,8 +457,6 @@ public class ImInputView extends RelativeLayout implements View.OnClickListener,
         this.mFragmentTransaction.commit();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void hideModeFragment() {
         if (this.mModeFragment != null) {
             this.mFragmentTransaction = this.mFragmentManager.beginTransaction();

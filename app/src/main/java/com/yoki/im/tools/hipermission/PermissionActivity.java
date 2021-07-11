@@ -3,12 +3,16 @@ package com.yoki.im.tools.hipermission;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,304 +27,307 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class PermissionActivity extends AppCompatActivity {
-    public static int PERMISSION_TYPE_MUTI = 2;
+
     public static int PERMISSION_TYPE_SINGLE = 1;
-    private static final int REQUEST_CODE_MUTI = 2;
-    public static final int REQUEST_CODE_MUTI_SINGLE = 3;
-    private static final int REQUEST_CODE_SINGLE = 1;
-    private static final int REQUEST_SETTING = 110;
-    private static final String TAG = "PermissionActivity";
+    public static int PERMISSION_TYPE_MUTI = 2;
+    private int mPermissionType;
+    private String mTitle;
+    private String mMsg;
     private static PermissionCallback mCallback;
-    private int mAnimStyleId;
-    private CharSequence mAppName;
     private List<PermissionItem> mCheckPermissions;
     private Dialog mDialog;
-    private int mFilterColor;
-    private String mMsg;
-    private int mPermissionType;
-    private int mRePermissionIndex;
+
+    private static final int REQUEST_CODE_SINGLE = 1;
+    private static final int REQUEST_CODE_MUTI = 2;
+    public static final int REQUEST_CODE_MUTI_SINGLE = 3;
+    private static final int REQUEST_SETTING = 110;
+
+    private static final String TAG = "PermissionActivity";
+    private CharSequence mAppName;
     private int mStyleId;
-    private String mTitle;
+    private int mFilterColor;
+    private int mAnimStyleId;
 
     public static void setCallBack(PermissionCallback callBack) {
-        mCallback = callBack;
+        PermissionActivity.mCallback = callBack;
     }
 
-    /* access modifiers changed from: protected */
-    @Override // android.support.v7.app.AppCompatActivity, android.support.v4.app.FragmentActivity
-    public void onDestroy() {
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         mCallback = null;
-        if (this.mDialog != null && this.mDialog.isShowing()) {
-            this.mDialog.dismiss();
-        }
+        if (mDialog != null && mDialog.isShowing())
+            mDialog.dismiss();
     }
 
-    /* access modifiers changed from: protected */
-    @Override // android.support.v7.app.AppCompatActivity, android.support.v4.app.SupportActivity, android.support.v4.app.FragmentActivity
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getDatas();
-        if (this.mPermissionType != PERMISSION_TYPE_SINGLE) {
-            this.mAppName = getApplicationInfo().loadLabel(getPackageManager());
+        if (mPermissionType == PERMISSION_TYPE_SINGLE) {
+            //单个权限申请
+            if (mCheckPermissions == null || mCheckPermissions.size() == 0)
+                return;
+
+            requestPermission(new String[]{mCheckPermissions.get(0).Permission}, REQUEST_CODE_SINGLE);
+        } else {
+            mAppName = getApplicationInfo().loadLabel(getPackageManager());
+            //多个权限
             showPermissionDialog();
-        } else if (this.mCheckPermissions != null && this.mCheckPermissions.size() != 0) {
-            requestPermission(new String[]{this.mCheckPermissions.get(0).Permission}, 1);
         }
     }
 
+
     private String getPermissionTitle() {
-        if (!TextUtils.isEmpty(this.mTitle)) {
-            return this.mTitle;
-        }
-        return String.format(getString(R.string.permission_dialog_title), this.mAppName);
+        return TextUtils.isEmpty(mTitle) ? String.format(getString(R.string.permission_dialog_title), mAppName) : mTitle;
     }
 
     private void showPermissionDialog() {
-        String msg;
-        int i = 3;
+
         String title = getPermissionTitle();
-        if (TextUtils.isEmpty(this.mMsg)) {
-            msg = String.format(getString(R.string.permission_dialog_msg), this.mAppName);
-        } else {
-            msg = this.mMsg;
-        }
+        String msg = TextUtils.isEmpty(mMsg) ? String.format(getString(R.string.permission_dialog_msg), mAppName) : mMsg;
+
         PermissionView contentView = new PermissionView(this);
-        if (this.mCheckPermissions.size() < 3) {
-            i = this.mCheckPermissions.size();
-        }
-        contentView.setGridViewColum(i);
+        contentView.setGridViewColum(mCheckPermissions.size() < 3 ? mCheckPermissions.size() : 3);
         contentView.setTitle(title);
         contentView.setMsg(msg);
-        contentView.setGridViewAdapter(new PermissionAdapter(this.mCheckPermissions));
-        if (this.mStyleId == -1) {
-            this.mStyleId = R.style.PermissionDefaultNormalStyle;
-            this.mFilterColor = getResources().getColor(R.color.permissionColorGreen);
+        //这里没有使用RecyclerView，可以少引入一个库
+        contentView.setGridViewAdapter(new PermissionAdapter(mCheckPermissions));
+        if (mStyleId == -1) {
+            //用户没有设置，使用默认绿色主题
+            mStyleId = R.style.PermissionDefaultNormalStyle;
+            mFilterColor = getResources().getColor(R.color.permissionColorGreen);
         }
-        contentView.setStyleId(this.mStyleId);
-        contentView.setFilterColor(this.mFilterColor);
-        contentView.setBtnOnClickListener(new View.OnClickListener() {
-            /* class com.library.hipermission.PermissionActivity.AnonymousClass1 */
 
+        contentView.setStyleId(mStyleId);
+        contentView.setFilterColor(mFilterColor);
+        contentView.setBtnOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                if (PermissionActivity.this.mDialog != null && PermissionActivity.this.mDialog.isShowing()) {
-                    PermissionActivity.this.mDialog.dismiss();
-                }
-                ActivityCompat.requestPermissions(PermissionActivity.this, PermissionActivity.this.getPermissionStrArray(), 2);
+                if (mDialog != null && mDialog.isShowing())
+                    mDialog.dismiss();
+                String[] strs = getPermissionStrArray();
+                ActivityCompat.requestPermissions(PermissionActivity.this, strs, REQUEST_CODE_MUTI);
             }
         });
-        this.mDialog = new Dialog(this);
-        this.mDialog.requestWindowFeature(1);
-        this.mDialog.setContentView(contentView);
-        if (this.mAnimStyleId != -1) {
-            this.mDialog.getWindow().setWindowAnimations(this.mAnimStyleId);
-        }
-        this.mDialog.setCanceledOnTouchOutside(false);
-        this.mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        this.mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            /* class com.library.hipermission.PermissionActivity.AnonymousClass2 */
+        mDialog = new Dialog(this);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(contentView);
+        if (mAnimStyleId != -1)
+            mDialog.getWindow().setWindowAnimations(mAnimStyleId);
 
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
             public void onCancel(DialogInterface dialog) {
                 dialog.dismiss();
-                if (PermissionActivity.mCallback != null) {
-                    PermissionActivity.mCallback.onClose();
-                }
-                PermissionActivity.this.finish();
+                if (mCallback != null)
+                    mCallback.onClose();
+                finish();
             }
         });
-        this.mDialog.show();
+        mDialog.show();
     }
+
 
     private void reRequestPermission(final String permission) {
         String permissionName = getPermissionItem(permission).PermissionName;
-        showAlertDialog(String.format(getString(R.string.permission_title), permissionName), String.format(getString(R.string.permission_denied), permissionName, this.mAppName), getString(R.string.permission_cancel), getString(R.string.permission_ensure), new DialogInterface.OnClickListener() {
-            /* class com.library.hipermission.PermissionActivity.AnonymousClass3 */
-
+        String alertTitle = String.format(getString(R.string.permission_title), permissionName);
+        String msg = String.format(getString(R.string.permission_denied), permissionName, mAppName);
+        showAlertDialog(alertTitle, msg, getString(R.string.permission_cancel), getString(R.string.permission_ensure), new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                PermissionActivity.this.requestPermission(new String[]{permission}, 3);
+                requestPermission(new String[]{permission}, REQUEST_CODE_MUTI_SINGLE);
             }
         });
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void requestPermission(String[] permissions, int requestCode) {
-        ActivityCompat.requestPermissions(this, permissions, requestCode);
+        ActivityCompat.requestPermissions(PermissionActivity.this, permissions, requestCode);
     }
 
     private void showAlertDialog(String title, String msg, String cancelTxt, String PosTxt, DialogInterface.OnClickListener onClickListener) {
-        new AlertDialog.Builder(this).setTitle(title).setMessage(msg).setCancelable(false).setNegativeButton(cancelTxt, new DialogInterface.OnClickListener() {
-            /* class com.library.hipermission.PermissionActivity.AnonymousClass4 */
-
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                PermissionActivity.this.onClose();
-            }
-        }).setPositiveButton(PosTxt, onClickListener).create().show();
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(msg)
+                .setCancelable(false)
+                .setNegativeButton(cancelTxt, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        onClose();
+                    }
+                })
+                .setPositiveButton(PosTxt, onClickListener).create();
+        alertDialog.show();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private String[] getPermissionStrArray() {
-        String[] str = new String[this.mCheckPermissions.size()];
-        for (int i = 0; i < this.mCheckPermissions.size(); i++) {
-            str[i] = this.mCheckPermissions.get(i).Permission;
+        String[] str = new String[mCheckPermissions.size()];
+        for (int i = 0; i < mCheckPermissions.size(); i++) {
+            str[i] = mCheckPermissions.get(i).Permission;
         }
         return str;
     }
 
+
     private void getDatas() {
         Intent intent = getIntent();
-        this.mPermissionType = intent.getIntExtra(ConstantValue.DATA_PERMISSION_TYPE, PERMISSION_TYPE_SINGLE);
-        this.mTitle = intent.getStringExtra(ConstantValue.DATA_TITLE);
-        this.mMsg = intent.getStringExtra(ConstantValue.DATA_MSG);
-        this.mFilterColor = intent.getIntExtra(ConstantValue.DATA_FILTER_COLOR, 0);
-        this.mStyleId = intent.getIntExtra(ConstantValue.DATA_STYLE_ID, -1);
-        this.mAnimStyleId = intent.getIntExtra(ConstantValue.DATA_ANIM_STYLE, -1);
-        this.mCheckPermissions = (List) intent.getSerializableExtra(ConstantValue.DATA_PERMISSIONS);
+        mPermissionType = intent.getIntExtra(ConstantValue.DATA_PERMISSION_TYPE, PERMISSION_TYPE_SINGLE);
+        mTitle = intent.getStringExtra(ConstantValue.DATA_TITLE);
+        mMsg = intent.getStringExtra(ConstantValue.DATA_MSG);
+        mFilterColor = intent.getIntExtra(ConstantValue.DATA_FILTER_COLOR, 0);
+        mStyleId = intent.getIntExtra(ConstantValue.DATA_STYLE_ID, -1);
+        mAnimStyleId = intent.getIntExtra(ConstantValue.DATA_ANIM_STYLE, -1);
+        mCheckPermissions = (List<PermissionItem>) intent.getSerializableExtra(ConstantValue.DATA_PERMISSIONS);
     }
 
-    @Override // android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback, android.support.v4.app.FragmentActivity
+    /**
+     * 重新申请权限数组的索引
+     */
+    private int mRePermissionIndex;
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
-            case 1:
+            case REQUEST_CODE_SINGLE:
                 String permission = getPermissionItem(permissions[0]).Permission;
-                if (grantResults[0] == 0) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     onGuarantee(permission, 0);
                 } else {
                     onDeny(permission, 0);
                 }
                 finish();
-                return;
-            case 2:
+                break;
+            case REQUEST_CODE_MUTI:
                 for (int i = 0; i < grantResults.length; i++) {
-                    if (grantResults[i] == 0) {
-                        this.mCheckPermissions.remove(getPermissionItem(permissions[i]));
+                    //权限允许后，删除需要检查的权限
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                        PermissionItem item = getPermissionItem(permissions[i]);
+                        mCheckPermissions.remove(item);
                         onGuarantee(permissions[i], i);
                     } else {
+                        //权限拒绝
                         onDeny(permissions[i], i);
                     }
                 }
-                if (this.mCheckPermissions.size() > 0) {
-                    reRequestPermission(this.mCheckPermissions.get(this.mRePermissionIndex).Permission);
-                    return;
+                if (mCheckPermissions.size() > 0) {
+                    //用户拒绝了某个或多个权限，重新申请
+                    reRequestPermission(mCheckPermissions.get(mRePermissionIndex).Permission);
                 } else {
                     onFinish();
-                    return;
                 }
-            case 3:
-                if (grantResults[0] == -1) {
+                break;
+            case REQUEST_CODE_MUTI_SINGLE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    //重新申请后再次拒绝
+                    //弹框警告! haha
                     try {
+                        //permissions可能返回空数组，所以try-catch
                         String name = getPermissionItem(permissions[0]).PermissionName;
-                        showAlertDialog(String.format(getString(R.string.permission_title), name), String.format(getString(R.string.permission_denied_with_naac), this.mAppName, name, this.mAppName), getString(R.string.permission_reject), getString(R.string.permission_go_to_setting), new DialogInterface.OnClickListener() {
-                            /* class com.library.hipermission.PermissionActivity.AnonymousClass5 */
-
+                        String title = String.format(getString(R.string.permission_title), name);
+                        String msg = String.format(getString(R.string.permission_denied_with_naac), mAppName, name, mAppName);
+                        showAlertDialog(title, msg, getString(R.string.permission_reject), getString(R.string.permission_go_to_setting), new DialogInterface.OnClickListener() {
+                            @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 try {
-                                    PermissionActivity.this.startActivityForResult(new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.parse("package:" + PermissionActivity.this.getPackageName())), 110);
+                                    Uri packageURI = Uri.parse("package:" + getPackageName());
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                                    startActivityForResult(intent, REQUEST_SETTING);
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    PermissionActivity.this.onClose();
+                                    onClose();
                                 }
                             }
                         });
                         onDeny(permissions[0], 0);
-                        return;
                     } catch (Exception e) {
                         e.printStackTrace();
                         onClose();
-                        return;
                     }
                 } else {
                     onGuarantee(permissions[0], 0);
-                    if (this.mRePermissionIndex < this.mCheckPermissions.size() - 1) {
-                        List<PermissionItem> list = this.mCheckPermissions;
-                        int i2 = this.mRePermissionIndex + 1;
-                        this.mRePermissionIndex = i2;
-                        reRequestPermission(list.get(i2).Permission);
-                        return;
+                    if (mRePermissionIndex < mCheckPermissions.size() - 1) {
+                        //继续申请下一个被拒绝的权限
+                        reRequestPermission(mCheckPermissions.get(++mRePermissionIndex).Permission);
+                    } else {
+                        //全部允许了
+                        onFinish();
                     }
-                    onFinish();
-                    return;
                 }
-            default:
-                return;
+                break;
         }
     }
 
+    @Override
     public void finish() {
         super.finish();
         overridePendingTransition(0, 0);
     }
 
-    @Override // android.support.v4.app.FragmentActivity
+    @Override
     public void onBackPressed() {
         finish();
     }
 
-    /* access modifiers changed from: protected */
-    @Override // android.support.v4.app.FragmentActivity
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e(TAG, "onActivityResult--requestCode:" + requestCode + ",resultCode:" + resultCode);
-        if (requestCode == 110) {
-            if (this.mDialog != null && this.mDialog.isShowing()) {
-                this.mDialog.dismiss();
-            }
+        if (requestCode == REQUEST_SETTING) {
+            if (mDialog != null && mDialog.isShowing())
+                mDialog.dismiss();
             checkPermission();
-            if (this.mCheckPermissions.size() > 0) {
-                this.mRePermissionIndex = 0;
-                reRequestPermission(this.mCheckPermissions.get(this.mRePermissionIndex).Permission);
-                return;
+            if (mCheckPermissions.size() > 0) {
+                mRePermissionIndex = 0;
+                reRequestPermission(mCheckPermissions.get(mRePermissionIndex).Permission);
+            } else {
+                onFinish();
             }
-            onFinish();
         }
+
     }
 
     private void checkPermission() {
-        ListIterator<PermissionItem> iterator = this.mCheckPermissions.listIterator();
+
+        ListIterator<PermissionItem> iterator = mCheckPermissions.listIterator();
         while (iterator.hasNext()) {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), iterator.next().Permission) == 0) {
+            int checkPermission = ContextCompat.checkSelfPermission(getApplicationContext(), iterator.next().Permission);
+            if (checkPermission == PackageManager.PERMISSION_GRANTED) {
                 iterator.remove();
             }
         }
     }
 
     private void onFinish() {
-        if (mCallback != null) {
+        if (mCallback != null)
             mCallback.onFinish();
-        }
         finish();
     }
 
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
     private void onClose() {
-        if (mCallback != null) {
+        if (mCallback != null)
             mCallback.onClose();
-        }
         finish();
     }
 
     private void onDeny(String permission, int position) {
-        if (mCallback != null) {
+        if (mCallback != null)
             mCallback.onDeny(permission, position);
-        }
     }
 
     private void onGuarantee(String permission, int position) {
-        if (mCallback != null) {
+        if (mCallback != null)
             mCallback.onGuarantee(permission, position);
-        }
     }
 
     private PermissionItem getPermissionItem(String permission) {
-        for (PermissionItem permissionItem : this.mCheckPermissions) {
-            if (permissionItem.Permission.equals(permission)) {
+        for (PermissionItem permissionItem : mCheckPermissions) {
+            if (permissionItem.Permission.equals(permission))
                 return permissionItem;
-            }
         }
         return null;
     }

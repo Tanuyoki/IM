@@ -1,20 +1,22 @@
 package com.yoki.im.tools;
 
 import android.os.Environment;
+
+import com.yoki.im.App;
+
 import java.io.File;
 
 public class PathUtils {
-    private static final String APK_NAME = "acarbang_temp.apk";
+    private static final String APK_NAME = "chat_temp.apk";
     private static final String CACHE_PICTURES_DIRECTORY = "photo";
     private static final String CACHE_ROOT_PATH = getCacheRootDirectory();
     private static final String CACHE_TEMP_DIRECTORY = "temp";
     private static final String CACHE_VOICE_DIRECTORY = "voice";
-    private static final String STORAGE_DIRECTORY = "Acarbang";
+    private static final String STORAGE_DIRECTORY = "Chat";
 
     public static String getCacheRootDirectory() {
         try {
-//            return App.getContext().getExternalFilesDir(null).getPath();
-            return "";
+            return App.getContext().getExternalFilesDir(null).getPath();
         } catch (NullPointerException e) {
             e.printStackTrace();
             return "";
@@ -36,7 +38,7 @@ public class PathUtils {
     }
 
     public static String getStoragePicturesDirectory() {
-        String directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "Acarbang" + File.separator;
+        String directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "Chat" + File.separator;
         createDirectory(directory);
         return directory;
     }

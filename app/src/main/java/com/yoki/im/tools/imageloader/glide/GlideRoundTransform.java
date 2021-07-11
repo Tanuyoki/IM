@@ -20,7 +20,7 @@ public class GlideRoundTransform extends BitmapTransformation {
     }
 
     public GlideRoundTransform(Context context, int dp) {
-        super(context);
+        super();
         radius = Resources.getSystem().getDisplayMetrics().density * ((float) dp);
     }
 

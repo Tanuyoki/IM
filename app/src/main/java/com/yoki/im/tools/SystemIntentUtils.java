@@ -30,77 +30,77 @@ public class SystemIntentUtils extends Intent {
     }
 
     public static void getAlbumPicture(final BaseActivity activity, final onIntentResultListener listener) {
-//        if (PermissionUtils.checkPermission("android.permission.WRITE_EXTERNAL_STORAGE")) {
-//            Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//            intent.setType("image/*");
-//            activity.startActivityForListener(intent, 0, new BaseActivity.OnActivityResultListener() {
-//                /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass1 */
-//
-//                @Override // com.yoki.im.base.BaseActivity.OnActivityResultListener
-//                public void onResult(int requestCode, int resultCode, Intent result) {
-//                    if (result != null) {
-//                        String path = ContentUriUtils.getPath(activity, result.getData());
-//                        if (listener != null) {
-//                            listener.getPicture(path);
-//                        }
-//                    }
-//                }
-//            });
-//            return;
-//        }
-//        PermissionUtils.applyPermission(new PermissionUtils.PermissionResultCallback() {
-//            /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass2 */
-//
-//            @Override // com.yoki.im.tools.PermissionUtils.PermissionResultCallback
-//            public void onFinish() {
-//                SystemIntentUtils.getAlbumPicture(activity, listener);
-//            }
-//        }, "android.permission.WRITE_EXTERNAL_STORAGE");
+        if (PermissionUtils.checkPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE")) {
+            Intent intent = new Intent("android.intent.action.PICK", MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            activity.startActivityForListener(intent, 0, new BaseActivity.OnActivityResultListener() {
+                /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass1 */
+
+                @Override // com.yoki.im.base.BaseActivity.OnActivityResultListener
+                public void onResult(int requestCode, int resultCode, Intent result) {
+                    if (result != null) {
+                        String path = ContentUriUtils.getPath(activity, result.getData());
+                        if (listener != null) {
+                            listener.getPicture(path);
+                        }
+                    }
+                }
+            });
+            return;
+        }
+        PermissionUtils.applyPermission(activity, new PermissionUtils.PermissionResultCallback() {
+            /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass2 */
+
+            @Override // com.yoki.im.tools.PermissionUtils.PermissionResultCallback
+            public void onFinish() {
+                SystemIntentUtils.getAlbumPicture(activity, listener);
+            }
+        }, "android.permission.WRITE_EXTERNAL_STORAGE");
     }
 
     public static void getCameraPicture(final BaseActivity activity, final String fileSavePath, final onIntentResultListener listener) {
-//        if (PermissionUtils.checkPermission("android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE")) {
-//            sCameraPath = "";
-//            if (fileSavePath == null || fileSavePath.isEmpty()) {
-//                sCameraPath = PathUtils.getStoragePicturesPathAndTime()[1];
-//            } else {
-//                sCameraPath = fileSavePath;
-//            }
-//            File file = new File(sCameraPath);
-//            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//            if (Build.VERSION.SDK_INT >= 24) {
-//                intent.addFlags(1);
-//                intent.putExtra("output", FileProvider.getUriForFile(activity, Constants.APP_FILE_PROVIDER, file));
-//            } else {
-//                intent.putExtra("output", Uri.fromFile(file));
-//            }
-//            activity.startActivityForListener(intent, 0, new BaseActivity.OnActivityResultListener() {
-//                /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass3 */
-//
-//                @Override // com.yoki.im.base.BaseActivity.OnActivityResultListener
-//                public void onResult(int requestCode, int resultCode, Intent result) {
-//                    File file = new File(SystemIntentUtils.sCameraPath);
-//                    String unused = SystemIntentUtils.sCameraPath = PathUtils.getStoragePicturesPathAndTime()[1];
-//                    File newFile = new File(SystemIntentUtils.sCameraPath);
-//                    if (file.exists()) {
-//                        file.renameTo(newFile);
-//                    }
-//                    if (listener != null && resultCode == -1) {
-//                        SystemUtils.scanFile(newFile);
-//                        listener.getPicture(SystemIntentUtils.sCameraPath);
-//                    }
-//                }
-//            });
-//            return;
-//        }
-//        PermissionUtils.applyPermission(new PermissionUtils.PermissionResultCallback() {
-//            /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass4 */
-//
-//            @Override // com.yoki.im.tools.PermissionUtils.PermissionResultCallback
-//            public void onFinish() {
-//                SystemIntentUtils.getCameraPicture(activity, fileSavePath, listener);
-//            }
-//        }, "android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE");
+        if (PermissionUtils.checkPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE")) {
+            sCameraPath = "";
+            if (fileSavePath == null || fileSavePath.isEmpty()) {
+                sCameraPath = PathUtils.getStoragePicturesPathAndTime()[1];
+            } else {
+                sCameraPath = fileSavePath;
+            }
+            File file = new File(sCameraPath);
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            if (Build.VERSION.SDK_INT >= 24) {
+                intent.addFlags(1);
+                intent.putExtra("output", FileProvider.getUriForFile(activity, Constants.APP_FILE_PROVIDER, file));
+            } else {
+                intent.putExtra("output", Uri.fromFile(file));
+            }
+            activity.startActivityForListener(intent, 0, new BaseActivity.OnActivityResultListener() {
+                /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass3 */
+
+                @Override // com.yoki.im.base.BaseActivity.OnActivityResultListener
+                public void onResult(int requestCode, int resultCode, Intent result) {
+                    File file = new File(SystemIntentUtils.sCameraPath);
+                    String unused = SystemIntentUtils.sCameraPath = PathUtils.getStoragePicturesPathAndTime()[1];
+                    File newFile = new File(SystemIntentUtils.sCameraPath);
+                    if (file.exists()) {
+                        file.renameTo(newFile);
+                    }
+                    if (listener != null && resultCode == -1) {
+                        SystemUtils.scanFile(activity, newFile);
+                        listener.getPicture(SystemIntentUtils.sCameraPath);
+                    }
+                }
+            });
+            return;
+        }
+        PermissionUtils.applyPermission(activity, new PermissionUtils.PermissionResultCallback() {
+            /* class com.yoki.im.tools.SystemIntentUtils.AnonymousClass4 */
+
+            @Override // com.yoki.im.tools.PermissionUtils.PermissionResultCallback
+            public void onFinish() {
+                SystemIntentUtils.getCameraPicture(activity, fileSavePath, listener);
+            }
+        }, "android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE");
     }
 
     public static void getCropPicture(BaseActivity activity, String cropFilePath, final String fileSavePath, boolean freeSize, final onIntentResultListener listener) {
@@ -116,7 +116,7 @@ public class SystemIntentUtils extends Intent {
             Uri outputUri = Uri.fromFile(outFile);
             Intent intent = new Intent("com.android.camera.action.CROP");
             if (Build.VERSION.SDK_INT >= 24) {
-//                intent.addFlags(1);
+                intent.addFlags(1);
                 imageUri = FileProvider.getUriForFile(activity, Constants.APP_FILE_PROVIDER, imageFile);
             } else {
                 imageUri = Uri.fromFile(imageFile);
@@ -153,7 +153,7 @@ public class SystemIntentUtils extends Intent {
                         path = outFile.getPath();
                     }
                     if (resultCode == -1 && listener != null) {
-//                        SystemUtils.scanFile(path);
+                        SystemUtils.scanFile(activity, path);
                         listener.getPicture(path);
                     }
                 }

@@ -4,12 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import com.yoki.im.tools.BitmapUtils;
-import com.yoki.im.tools.imageloader.glide.GlideApp;
-import com.yoki.im.tools.imageloader.glide.GlideCircleTransform;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.yoki.im.tools.imageloader.glide.GlideApp;
+import com.yoki.im.tools.imageloader.glide.GlideCircleTransform;
 
 public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     public SimpleTarget<Bitmap> intoImageView(final ImageView imageView) {
@@ -45,6 +45,7 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy {
     @Override // com.yoki.im.tools.imageloader.BaseImageLoaderStrategy
     public void loadImImage(Object image, ImageView imageView, int width, int height, RequestListener listener) {
         GlideApp.with(imageView.getContext()).load(image).override(width, height).listener((RequestListener<Drawable>) listener).centerCrop().into(imageView);
+
     }
 
     @Override // com.yoki.im.tools.imageloader.BaseImageLoaderStrategy

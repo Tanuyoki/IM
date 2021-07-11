@@ -43,6 +43,7 @@ public class BitmapUtils {
         }
         BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
         bitmapOptions.inJustDecodeBounds = true;
+
         BitmapFactory.decodeByteArray(byteTmp, 0, byteTmp.length, bitmapOptions);
         return calculateBitmapImSize(bitmapOptions.outWidth, bitmapOptions.outHeight);
     }

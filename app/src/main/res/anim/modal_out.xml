@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:ns1="http://schemas.android.com/apk/res/android" ns1:interpolator="@android:anim/linear_interpolator" xmlns:ns2="http://schemas.android.com/apk/res/android" ns2:shareInterpolator="true">
+    <scale xmlns:ns3="http://schemas.android.com/apk/res/android" ns3:duration="150" xmlns:ns4="http://schemas.android.com/apk/res/android" ns4:pivotX="50%" xmlns:ns5="http://schemas.android.com/apk/res/android" ns5:pivotY="50%" xmlns:ns6="http://schemas.android.com/apk/res/android" ns6:fromXScale="1" xmlns:ns7="http://schemas.android.com/apk/res/android" ns7:toXScale="0.6" xmlns:ns8="http://schemas.android.com/apk/res/android" ns8:fromYScale="1" xmlns:ns9="http://schemas.android.com/apk/res/android" ns9:toYScale="0.6"/>
+    <alpha xmlns:ns10="http://schemas.android.com/apk/res/android" ns10:duration="150" xmlns:ns11="http://schemas.android.com/apk/res/android" ns11:fromAlpha="1" xmlns:ns12="http://schemas.android.com/apk/res/android" ns12:toAlpha="0"/>
+</set>

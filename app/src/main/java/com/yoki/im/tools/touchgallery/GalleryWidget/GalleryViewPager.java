@@ -107,13 +107,13 @@ public class GalleryViewPager extends ViewPager {
     @TargetApi(5)
     private float[] handleMotionEvent(MotionEvent event) {
         switch (event.getAction() & 255) {
+            case 0:
+                this.last = new PointF(event.getX(0), event.getY(0));
+                break;
             case 1:
             case 2:
                 PointF curr = new PointF(event.getX(0), event.getY(0));
                 return new float[]{curr.x - this.last.x, curr.y - this.last.y};
-            case 0:
-                this.last = new PointF(event.getX(0), event.getY(0));
-                break;
         }
         return null;
     }

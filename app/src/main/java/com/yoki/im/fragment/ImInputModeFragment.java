@@ -48,11 +48,11 @@ public class ImInputModeFragment extends BaseFragment implements View.OnClickLis
             case R.id.im_mode_container_camera /*{ENCODED_INT: 2131296866}*/:
                 SystemIntentUtils.getCameraPicture((BaseActivity) getActivity(), null, this.resultListener);
                 return;
-            case R.id.im_mode_container_order /*{ENCODED_INT: 2131296867}*/:
-            default:
-                return;
             case R.id.im_mode_container_picture /*{ENCODED_INT: 2131296868}*/:
                 SystemIntentUtils.getAlbumPicture((BaseActivity) getActivity(), this.resultListener);
+                return;
+            case R.id.im_mode_container_order /*{ENCODED_INT: 2131296867}*/:
+            default:
                 return;
         }
     }

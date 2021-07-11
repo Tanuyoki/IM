@@ -3,14 +3,15 @@
     package="com.yoki.im">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.IM">
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".activity.ImAty" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +23,22 @@
         <activity android:name=".activity.MessageShowAty" />
         <activity android:name=".activity.ShowOriginalPictureAty" />
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".tools.hipermission.PermissionActivity" />
+        <activity android:name=".tools.hipermission.PermissionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomTheme_Dialog" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.yoki.im.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+        <meta-data
+            android:name="com.yoki.im.tools.imageloader.glide.CustomAppGlideModule"
+            android:value="AppGlideModule"/>
     </application>
 
 </manifest>

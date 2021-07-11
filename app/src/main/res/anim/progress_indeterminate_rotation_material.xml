@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set>
+    <objectAnimator xmlns:ns1="http://schemas.android.com/apk/res/android" ns1:interpolator="@android:anim/linear_interpolator" xmlns:ns2="http://schemas.android.com/apk/res/android" ns2:duration="6665" xmlns:ns3="http://schemas.android.com/apk/res/android" ns3:repeatCount="infinite" xmlns:ns4="http://schemas.android.com/apk/res/android" ns4:valueFrom="0" xmlns:ns5="http://schemas.android.com/apk/res/android" ns5:valueTo="720" xmlns:ns6="http://schemas.android.com/apk/res/android" ns6:valueType="floatType" xmlns:ns7="http://schemas.android.com/apk/res/android" ns7:propertyName="rotation"/>
+</set>

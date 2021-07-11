@@ -4,7 +4,7 @@ import com.yoki.im.R;
 
 public class Constants {
     public static final String API_CENTER = "http://192.168.1.10:8360";
-    public static final String APP_FILE_PROVIDER = "com.acarbond.car.fileprovider";
+    public static final String APP_FILE_PROVIDER = "com.yoki.im.fileProvider";
     public static final String FILE_PATH_USER_AVATAR = PathUtils.getCachePicturesPath(FILE_NAME.USER_AVATAR);
     public static final String H5_CENTER = "http://h5.acarbang.com/";
     public static final String SP_APP_CONFIG_NAME = "appConfig";
